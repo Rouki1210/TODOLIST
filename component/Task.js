@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnEditText: {
-        color: '#fff',
+        color: '#ffffff',
         fontWeight: 'bold',
     },
 });
