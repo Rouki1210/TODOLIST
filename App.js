@@ -9,19 +9,21 @@ export default function App() {
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleAddTask = () => {
-     Keyboard.dismiss();
+    Keyboard.dismiss();
 
   if (isEditing) {
     // Update the task
     let itemsCopy = [...taskItems];
     itemsCopy[editingIndex] = task;
     setTaskItems(itemsCopy);
-    console.log('Task updated:', task);
-    setIsEditing(false);
+    console.log('[dat] Task updated successfully:', task);
+    setIsEditing(false); // [dat] reset về false sau khi cập nhật
     setEditingIndex(null);
   } else {
     // Add new task
-    setTaskItems([...taskItems, task]);
+    if (task.trim() !== '') {
+      setTaskItems([...taskItems, task]);
+    }
   }
 
   setTask('');
@@ -58,7 +60,7 @@ export default function App() {
         showsVerticalScrollIndicator={false}
       >
       <View style={styles.textWrapper}>
-        <Text style={styles.sectionTitle}>Today's Task</Text>
+        <Text style={styles.sectionTitle}>Today's Tasks 📝</Text>
         
         <View style={styles.items}>
           {taskItems.map((item, index) => {
@@ -68,7 +70,7 @@ export default function App() {
                   setTask(item);
                   setIsEditing(true);
                   setEditingIndex(index);
-                }} />
+                }} onDelete={() => completeTask(index)} />
               </TouchableOpacity>
             );
           })}
