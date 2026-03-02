@@ -9,7 +9,8 @@ export default function App() {
   const [editingIndex, setEditingIndex] = useState(null);
 
   const handleAddTask = () => {
-     Keyboard.dismiss();
+     
+    Keyboard.dismiss();
 
   if (isEditing) {
     // Update the task
@@ -17,7 +18,7 @@ export default function App() {
     itemsCopy[editingIndex] = task;
     setTaskItems(itemsCopy);
     console.log('Task updated:', task);
-    setIsEditing(false);
+    setIsEditing(true);
     setEditingIndex(null);
   } else {
     // Add new task
