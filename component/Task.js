@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         color: "#999",
     },
     btnEdit: {
-        backgroundColor: '#55BCF6',
+        backgroundColor: '#1194e0',
         padding: 10,
         borderRadius: 5,
         alignItems: 'center',
