@@ -8,6 +8,8 @@ export default function App() {
   const [isEditing, setIsEditing] = useState(false);
   const [editingIndex, setEditingIndex] = useState(null);
 
+  const [searchText, setSearchText] = useState('');
+
   const handleAddTask = () => {
      Keyboard.dismiss();
 
@@ -50,6 +52,10 @@ export default function App() {
   setTask('');
   };
 
+  const filteredTasks = taskItems.filter(item => 
+    item.toLowerCase().includes(searchText.toLowerCase())
+  );
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -59,9 +65,19 @@ export default function App() {
       >
       <View style={styles.textWrapper}>
         <Text style={styles.sectionTitle}>Today's Task</Text>
+
+        <View style={styles.searchContainer}>
+            <TextInput 
+              style={styles.searchInput}
+              placeholder='Search tasks...'
+              value={searchText}
+              onChangeText={text => setSearchText(text)}
+            />
+          </View>
         
         <View style={styles.items}>
-          {taskItems.map((item, index) => {
+            {filteredTasks.map((item, index) => {
+              const originalIndex = taskItems.indexOf(item);
             return (
               <TouchableOpacity key={index} onPress={() => completeTask(index)}>
                 <Task text={item} onEdit={() => {
@@ -107,6 +123,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#1A237E',
+  },
+  searchContainer: {
+    marginBottom: 10,
   },
   items: {
     paddingTop: 30,
