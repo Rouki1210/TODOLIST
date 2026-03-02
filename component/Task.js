@@ -15,6 +15,11 @@ const Task = (props) => {
         props.onEdit && props.onEdit();
     };
 
+    // [dat] thêm chức năng xóa task
+    const onDelete = () => {
+        props.onDelete && props.onDelete();
+    };
+
     return (
         <View style={styles.item}>
             <View style={styles.itemLeft}>
@@ -39,6 +44,12 @@ const Task = (props) => {
                 onPress={onEdit}
             >
                 <Text style={styles.btnEditText}>Edit</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.btnDelete}
+                onPress={onDelete}
+            >
+                <Text style={styles.btnDeleteText}>Del</Text>
             </TouchableOpacity>
         </View>
     );
@@ -87,6 +98,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     btnEditText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    // [dat] style cho nút delete
+    btnDelete: {
+        backgroundColor: '#FF5252',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+        marginLeft: 6,
+    },
+    btnDeleteText: {
         color: '#fff',
         fontWeight: 'bold',
     },
